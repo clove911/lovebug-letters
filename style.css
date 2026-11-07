@@ -586,3 +586,153 @@ footer span {
     padding: 9px;
   }
 }
+
+/* =================================
+   SHARE LINK POPUP
+================================= */
+
+.share-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(83, 28, 46, 0.55);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.share-modal[hidden] {
+  display: none;
+}
+
+.share-card {
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  background: #fff9f5;
+  border: 2px solid #efb4c3;
+  border-radius: 20px;
+  padding: 35px 25px;
+  text-align: center;
+  box-shadow: 0 15px 50px rgba(80, 20, 40, .2);
+  animation: popupIn .25s ease;
+}
+
+@keyframes popupIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-heart {
+  color: #c93654;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.share-card h2 {
+  font-family: "Playfair Display", serif;
+  color: #c93654;
+  font-size: 27px;
+  margin-bottom: 12px;
+}
+
+.share-card p {
+  color: #a87585;
+  font-size: 12px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.share-card label {
+  text-align: left;
+  color: #743347;
+}
+
+.share-card input {
+  margin-bottom: 12px;
+  font-size: 11px;
+}
+
+.share-copy {
+  width: 100%;
+  background: #c93654;
+  color: white;
+  padding: 13px;
+  border-radius: 9px;
+}
+
+.modal-close {
+  position: absolute;
+  right: 14px;
+  top: 10px;
+  border: none;
+  background: transparent;
+  color: #c93654;
+  font-size: 26px;
+}
+
+.share-card .modal-footnote {
+  margin: 17px 0 0;
+  font-family: "Dancing Script", cursive;
+  font-size: 17px;
+}
+
+/* =================================
+   RECIPIENT VIEW
+================================= */
+
+body.recipient-view .welcome,
+body.recipient-view .tools-panel,
+body.recipient-view .workspace-heading,
+body.recipient-view .canvas-hint,
+body.recipient-view .object-controls,
+body.recipient-view .save-indicator,
+body.recipient-view .share-button {
+  display: none;
+}
+
+body.recipient-view .editor-layout {
+  display: block;
+  max-width: 800px;
+  margin: 25px auto;
+}
+
+body.recipient-view .workspace-panel {
+  padding: 15px;
+}
+
+body.recipient-view .workspace-scroll {
+  background: #fff0f3;
+  padding: 15px;
+}
+
+body.recipient-view .letter-canvas {
+  max-width: 680px;
+  min-height: 750px;
+  box-shadow: 0 8px 30px rgba(150, 70, 90, .13);
+}
+
+body.recipient-view .letter-content {
+  padding-top: 110px;
+}
+
+body.recipient-view .canvas-sticker {
+  cursor: default;
+  pointer-events: none;
+}
+
+body.recipient-view .canvas-sticker.selected {
+  outline: none;
+}
+
+@media(max-width:520px) {
+  body.recipient-view .letter-canvas {
+    min-height: 650px;
+  }
+}
