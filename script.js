@@ -655,7 +655,7 @@ function decodeLetter(encoded) {
 
 // IMPORTANT: Replace this with your actual GitHub Pages address.
 const PUBLIC_SITE_URL =
-  "https://YOUR-USERNAME.github.io/lovebug-letters/";
+  "https://clove911.github.io/lovebug-letters/";
 
 async function shareLetter() {
   if (!$("messageInput").value.trim()) {
@@ -685,6 +685,46 @@ async function shareLetter() {
   }
 }
 
+async function copyShareLink() {
+  const link = $("shareUrl").value;
+
+  try {
+    await navigator.clipboard.writeText(link);
+
+    $("copyShareLink").textContent = "Copied! ♥";
+
+    showToast("Your link has been copied!");
+
+  } catch (error) {
+    // Fallback for browsers without clipboard permission.
+    $("shareUrl").focus();
+    $("shareUrl").select();
+
+    const copied = document.execCommand("copy");
+
+    if (copied) {
+      $("copyShareLink").textContent = "Copied! ♥";
+      showToast("Your link has been copied!");
+    } else {
+      showToast("Select and copy the link manually.");
+    }
+  }
+}
+
+function closeSharePopup() {
+  $("shareModal").hidden = true;
+  $("copyShareLink").textContent = "Copy link ♡";
+}
+
+$("copyShareLink").addEventListener("click", copyShareLink);
+
+$("closeShareModal").addEventListener("click", closeSharePopup);
+
+$("shareModal").addEventListener("click", event => {
+  if (event.target === $("shareModal")) {
+    closeSharePopup();
+  }
+});
 /* =====================================
    LOAD SHARED LETTER
 ===================================== */
@@ -694,8 +734,7 @@ function loadSharedLetter() {
 
   if (!hash.startsWith("#letter=")) return;
 
-  const encoded = hash.slice(8);
-
+  const encoded = hash.slice("#letter=".length);
   const data = decodeLetter(encoded);
 
   if (!data || data.version !== 1) {
@@ -715,7 +754,12 @@ function loadSharedLetter() {
     "DM Sans"
   ];
 
-  const papers = ["cream", "pink", "white", "rose"];
+  const papers = [
+    "cream",
+    "pink",
+    "white",
+    "rose"
+  ];
 
   $("fontSelect").value = fonts.includes(data.font)
     ? data.font
@@ -731,11 +775,14 @@ function loadSharedLetter() {
 
   if (Array.isArray(data.stickers)) {
     data.stickers.slice(0, 80).forEach(item => {
+
       if (
         !artwork[item.type] ||
         !Number.isFinite(item.x) ||
         !Number.isFinite(item.y)
-      ) return;
+      ) {
+        return;
+      }
 
       createSticker(
         item.type,
@@ -745,13 +792,22 @@ function loadSharedLetter() {
         Number(item.rotation) || 0,
         Number.isFinite(item.z) ? item.z : null
       );
+
     });
   }
 
   selectSticker(null);
   updateLetter();
 
-  $("saveStatus").textContent = "Shared letter loaded";
+  // THE IMPORTANT PART:
+  // Switch from creator mode to recipient mode.
+  document.body.classList.add("recipient-view");
+
+  document.title = "A little letter for you ♡";
+
+  $("saveStatus").textContent = "A letter just for you";
+
+  showToast("Someone sent you a little letter! ♡");
 }
 
 /* =====================================
