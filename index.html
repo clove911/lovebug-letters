@@ -2,348 +2,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lovebug Letters ♡</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Dancing+Script:wght@500;700&family=Pacifico&family=Playfair+Display:ital,wght@0,500;1,500&family=Quicksand:wght@400;600;700&display=swap');
+  <title>Lovebug Letters</title>
+  <meta name="theme-color" content="#fff0f3">
+  <meta name="description" content="Create and share your sweetest little letters.">
 
-:root {
-  --pink: #ffdce5;
-  --red: #c93654;
-  --dark: #76263d;
-  --cream: #fffaf3;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-* { box-sizing: border-box; }
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Pacifico&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-body {
-  margin: 0;
-  background: #fff0f3;
-  color: var(--dark);
-  font-family: 'DM Sans', sans-serif;
-}
-
-header {
-  text-align: center;
-  padding: 25px 15px;
-  background: #ffe1e9;
-  border-bottom: 3px dashed #ef9caf;
-}
-
-.logo {
-  font-family: 'Pacifico', cursive;
-  color: var(--red);
-  font-size: 32px;
-}
-
-.tagline {
-  font-family: 'Dancing Script', cursive;
-  font-size: 19px;
-}
-
-main {
-  max-width: 1100px;
-  margin: 25px auto;
-  padding: 15px;
-}
-
-.intro {
-  text-align: center;
-  margin-bottom: 25px;
-}
-
-.intro h2 {
-  font-family: 'Playfair Display', serif;
-  color: var(--red);
-}
-
-.editor {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 22px;
-  align-items: start;
-}
-
-.panel {
-  background: white;
-  padding: 20px;
-  border: 2px solid #f6b9c8;
-  border-radius: 18px;
-  box-shadow: 4px 5px 0 #f5c4d0;
-}
-
-.letter {
-  background: var(--cream);
-  min-height: 510px;
-  padding: 35px 28px;
-  border: 2px dashed #e8a5b4;
-  border-radius: 8px;
-  position: relative;
-  overflow-wrap: anywhere;
-}
-
-.letter h2 {
-  text-align: center;
-  font-family: 'Playfair Display', serif;
-  color: var(--red);
-}
-
-.letter-meta {
-  font-size: 12px;
-  color: #b56a7e;
-  margin-bottom: 25px;
-}
-
-#preview {
-  white-space: pre-wrap;
-  line-height: 1.9;
-  min-height: 180px;
-  font-size: 19px;
-}
-
-#preview:empty::before {
-  content: "Your sweet little message goes here...";
-  color: #c9a3ad;
-}
-
-#decorations {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 25px;
-  justify-content: center;
-}
-
-.sticker {
-  font-size: 27px;
-  image-rendering: pixelated;
-}
-
-label {
-  display: block;
-  font-weight: 700;
-  margin: 17px 0 7px;
-  font-size: 14px;
-}
-
-input, textarea, select {
-  width: 100%;
-  padding: 12px;
-  border: 2px solid #f4c2cf;
-  border-radius: 10px;
-  font: inherit;
-  color: var(--dark);
-  background: #fffafd;
-  outline: none;
-}
-
-textarea {
-  min-height: 125px;
-  resize: vertical;
-}
-
-input:focus, textarea:focus, select:focus {
-  border-color: var(--red);
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  border-radius: 10px;
-  padding: 11px 15px;
-  font: inherit;
-  font-weight: 700;
-}
-
-.sticker-btn {
-  background: #ffe8ee;
-  margin: 4px;
-  font-size: 20px;
-}
-
-.primary {
-  width: 100%;
-  margin-top: 18px;
-  background: var(--red);
-  color: white;
-}
-
-.primary:hover { background: #a92242; }
-
-.secondary {
-  background: #ffe5ec;
-  color: var(--dark);
-  margin-top: 10px;
-}
-
-footer {
-  text-align: center;
-  padding: 25px;
-  font-family: 'Dancing Script', cursive;
-  font-size: 19px;
-}
-
-@media(max-width: 720px) {
-  .editor { grid-template-columns: 1fr; }
-  .letter { min-height: 430px; }
-  .logo { font-size: 27px; }
-}
-</style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-  <div class="logo">♡ Lovebug Letters ♡</div>
-  <div class="tagline">little letters, big feelings</div>
+<header class="topbar">
+  <a class="brand" href="index.html">
+    <span class="brand-mark">L</span>
+    <span>Lovebug Letters</span>
+  </a>
+
+  <div class="top-actions">
+    <span class="save-indicator" id="saveStatus">Your letter is ready</span>
+    <button class="share-button" id="shareButton">Share letter</button>
+  </div>
 </header>
 
-<main>
+<main class="app">
 
-<section class="intro">
-  <h2>Make someone smile today 💌</h2>
-  <p>A little love, wrapped in a letter.</p>
-</section>
+  <section class="welcome">
+    <p class="eyebrow">A LITTLE CORNER OF THE INTERNET</p>
+    <h1>Make something <span>sweet.</span></h1>
+    <p>Write a letter, decorate it, and send a little happiness.</p>
+  </section>
 
-<div class="editor">
+  <section class="editor-layout">
 
-<!-- LETTER PREVIEW -->
-<section class="panel">
-  <div class="letter" id="letter">
-    <h2>To someone special ♡</h2>
+    <!-- LEFT: LETTER WORKSPACE -->
 
-    <div class="letter-meta">
-      <span id="toPreview">To: My favourite person</span>
-    </div>
+    <section class="workspace-panel">
 
-    <div id="preview"></div>
+      <div class="workspace-heading">
+        <div>
+          <h2>Your letter</h2>
+          <p>Drag your decorations wherever you like.</p>
+        </div>
 
-    <div id="decorations"></div>
+        <button id="clearSelection" class="subtle-button">
+          Deselect
+        </button>
+      </div>
 
-    <div style="text-align:right; margin-top:30px;
-    font-family:'Dancing Script'; font-size:21px;">
-      With love, <span id="fromPreview">Someone ♡</span>
-    </div>
-  </div>
-</section>
+      <div class="workspace-scroll">
 
-<!-- EDITING PANEL -->
-<section class="panel">
+        <div id="letterCanvas" class="letter-canvas">
 
-  <h3>♡ Your little letter</h3>
+          <div class="paper-decoration top-decoration">
+            WITH LOVE, ALWAYS
+          </div>
 
-  <label>To whom?</label>
-  <input id="recipient" placeholder="Someone special...">
+          <div class="letter-content">
 
-  <label>Your name / nickname</label>
-  <input id="sender" placeholder="From someone ♡">
+            <p class="letter-date" id="letterDate">A LITTLE NOTE FOR YOU</p>
 
-  <label>Your message</label>
-  <textarea id="message"
-  placeholder="Write something sweet here..."></textarea>
+            <h2 id="recipientPreview">To someone special</h2>
 
-  <label>Choose your font</label>
-  <select id="font">
-    <option value="'Dancing Script', cursive">Sweet Magnolia</option>
-    <option value="'Playfair Display', serif">Dreamy Romance</option>
-    <option value="'Pacifico', cursive">Cherry Pop</option>
-    <option value="'Quicksand', sans-serif">Little Diary</option>
-    <option value="'DM Sans', sans-serif">Vintage Love</option>
-  </select>
+            <div
+              id="messagePreview"
+              class="message-preview"
+            >Your sweet little message goes here...</div>
 
-  <label>Paper colour</label>
-  <select id="paper">
-    <option value="#fffaf3">Vanilla cream</option>
-    <option value="#fff0f5">Baby pink</option>
-    <option value="#fff5e9">Strawberry milk</option>
-    <option value="#fffafa">Pure white</option>
-  </select>
+            <div class="signature">
+              <span>With love,</span>
+              <strong id="senderPreview">Someone special</strong>
+            </div>
 
-  <label>Decorate your letter ♡</label>
+          </div>
 
-  <div>
-    <button class="sticker-btn" onclick="addSticker('🌷')">🌷</button>
-    <button class="sticker-btn" onclick="addSticker('🌸')">🌸</button>
-    <button class="sticker-btn" onclick="addSticker('🍓')">🍓</button>
-    <button class="sticker-btn" onclick="addSticker('🍫')">🍫</button>
-    <button class="sticker-btn" onclick="addSticker('💗')">💗</button>
-    <button class="sticker-btn" onclick="addSticker('🎀')">🎀</button>
-    <button class="sticker-btn" onclick="addSticker('🧸')">🧸</button>
-    <button class="sticker-btn" onclick="addSticker('✨')">✨</button>
-  </div>
+          <div class="canvas-footer">
+            MADE WITH LOVE
+          </div>
 
-  <button class="secondary" onclick="clearStickers()">
-    Clear decorations
-  </button>
+          <!-- STICKERS ARE ADDED HERE -->
 
-  <button class="primary" onclick="sealLetter()">
-    Seal my letter 💌
-  </button>
+        </div>
 
-  <p id="status" style="font-size:12px;text-align:center;"></p>
+      </div>
 
-</section>
-</div>
+      <div class="canvas-hint">
+        Select a sticker to move it. Use the controls to customize it.
+      </div>
+
+      <div class="object-controls">
+
+        <span class="selected-label" id="selectedLabel">
+          No sticker selected
+        </span>
+
+        <div class="control-buttons">
+
+          <button id="smallerButton" disabled>−</button>
+          <button id="biggerButton" disabled>+</button>
+          <button id="rotateButton" disabled>Rotate</button>
+          <button id="backButton" disabled>Backward</button>
+          <button id="frontButton" disabled>Forward</button>
+          <button id="deleteButton" disabled class="delete-button">Delete</button>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- RIGHT: EDITOR TOOLS -->
+
+    <aside class="tools-panel">
+
+      <div class="tool-section">
+        <div class="section-heading">
+          <h3>01. Your message</h3>
+          <span>WRITE</span>
+        </div>
+
+        <label for="recipientInput">To</label>
+        <input id="recipientInput" placeholder="Someone special...">
+
+        <label for="senderInput">From</label>
+        <input id="senderInput" placeholder="Your name...">
+
+        <label for="messageInput">Your letter</label>
+        <textarea id="messageInput" maxlength="3000"
+          placeholder="Write something beautiful..."></textarea>
+
+        <div class="character-count">
+          <span id="characterCount">0</span> / 3000
+        </div>
+      </div>
+
+      <div class="tool-section">
+        <div class="section-heading">
+          <h3>02. Typography</h3>
+          <span>STYLE</span>
+        </div>
+
+        <label for="fontSelect">Choose your font</label>
+        <select id="fontSelect">
+          <option value="Dancing Script">Sweet Magnolia</option>
+          <option value="Playfair Display">Dreamy Romance</option>
+          <option value="Pacifico">Cherry Pop</option>
+          <option value="Quicksand">Little Diary</option>
+          <option value="DM Sans">Vintage Love</option>
+        </select>
+
+        <label for="paperSelect">Paper colour</label>
+        <select id="paperSelect">
+          <option value="cream">Vanilla cream</option>
+          <option value="pink">Baby pink</option>
+          <option value="white">Soft white</option>
+          <option value="rose">Rose milk</option>
+        </select>
+      </div>
+
+      <div class="tool-section">
+        <div class="section-heading">
+          <h3>03. Sticker studio</h3>
+          <span>DECORATE</span>
+        </div>
+
+        <p class="tool-description">
+          Pick a little decoration and place it anywhere on your letter.
+        </p>
+
+        <div class="sticker-category">
+          <h4>FLOWERS</h4>
+          <div class="sticker-grid">
+            <button data-sticker="rose" class="sticker-option">Rose</button>
+            <button data-sticker="tulip" class="sticker-option">Tulip</button>
+            <button data-sticker="daisy" class="sticker-option">Daisy</button>
+          </div>
+        </div>
+
+        <div class="sticker-category">
+          <h4>SWEET THINGS</h4>
+          <div class="sticker-grid">
+            <button data-sticker="strawberry" class="sticker-option">Berry</button>
+            <button data-sticker="chocolate" class="sticker-option">Chocolate</button>
+          </div>
+        </div>
+
+        <div class="sticker-category">
+          <h4>LOVE NOTES</h4>
+          <div class="sticker-grid">
+            <button data-sticker="heart" class="sticker-option">Heart</button>
+            <button data-sticker="bow" class="sticker-option">Bow</button>
+            <button data-sticker="teddy" class="sticker-option">Teddy</button>
+            <button data-sticker="star" class="sticker-option">Star</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tool-section">
+        <button id="clearStickers" class="clear-button">
+          Clear all decorations
+        </button>
+
+        <button id="resetButton" class="reset-button">
+          Start a new letter
+        </button>
+      </div>
+
+    </aside>
+
+  </section>
+
+  <footer>
+    <p>Little letters. Big feelings.</p>
+    <span>LOVEBUG LETTERS © 2026</span>
+  </footer>
+
 </main>
 
-<footer>
-  Made with ♡ and a little bit of magic.
-</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script>
-const message = document.getElementById('message');
-const preview = document.getElementById('preview');
-const recipient = document.getElementById('recipient');
-const sender = document.getElementById('sender');
-const font = document.getElementById('font');
-const paper = document.getElementById('paper');
-const letter = document.getElementById('letter');
-
-function updateLetter() {
-  preview.textContent = message.value;
-  preview.style.fontFamily = font.value;
-
-  document.getElementById('toPreview').textContent =
-    'To: ' + (recipient.value || 'My favourite person');
-
-  document.getElementById('fromPreview').textContent =
-    sender.value || 'Someone ♡';
-
-  letter.style.background = paper.value;
-}
-
-[message, recipient, sender, font, paper].forEach(element => {
-  element.addEventListener('input', updateLetter);
-  element.addEventListener('change', updateLetter);
-});
-
-function addSticker(symbol) {
-  const sticker = document.createElement('span');
-  sticker.className = 'sticker';
-  sticker.textContent = symbol;
-
-  document.getElementById('decorations').appendChild(sticker);
-}
-
-function clearStickers() {
-  document.getElementById('decorations').innerHTML = '';
-}
-
-function sealLetter() {
-  if (!message.value.trim()) {
-    document.getElementById('status').textContent =
-      'Write a little message first! 💗';
-    return;
-  }
-
-  document.getElementById('status').textContent =
-    'Your letter is ready for its next little adventure! 💌';
-}
-
-updateLetter();
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
