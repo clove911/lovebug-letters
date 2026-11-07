@@ -225,6 +225,38 @@
 
 </main>
 
+<!-- SHARE LINK POPUP -->
+
+<div class="share-modal" id="shareModal" hidden>
+  <div class="share-card">
+
+    <button class="modal-close" id="closeShareModal"
+      aria-label="Close">&times;</button>
+
+    <div class="modal-heart">♥</div>
+
+    <h2>Your link is ready!</h2>
+
+    <p>Your little letter is ready to travel. Send it to someone special!</p>
+
+    <label for="shareUrl">Your letter link</label>
+
+    <input
+      id="shareUrl"
+      type="text"
+      readonly
+      aria-label="Your shareable letter link"
+    >
+
+    <button id="copyShareLink" class="share-copy">
+      Copy link ♡
+    </button>
+
+    <p class="modal-footnote">Made with love, just for someone special.</p>
+
+  </div>
+</div>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="script.js"></script>
