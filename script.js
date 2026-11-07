@@ -653,6 +653,10 @@ function decodeLetter(encoded) {
   }
 }
 
+// IMPORTANT: Replace this with your actual GitHub Pages address.
+const PUBLIC_SITE_URL =
+  "https://YOUR-USERNAME.github.io/lovebug-letters/";
+
 async function shareLetter() {
   if (!$("messageInput").value.trim()) {
     showToast("Write your letter first.");
@@ -662,18 +666,22 @@ async function shareLetter() {
   try {
     const encoded = encodeLetter();
 
-    const url = new URL(window.location.href);
+    // Always use the published website, not the GitHub editor URL.
+    const url = new URL(PUBLIC_SITE_URL);
 
     url.hash = "letter=" + encoded;
 
-    await navigator.clipboard.writeText(url.href);
+    const shareLink = url.href;
 
-    $("saveStatus").textContent = "Letter link copied";
+    // Display the link popup.
+    $("shareUrl").value = shareLink;
+    $("shareModal").hidden = false;
 
-    showToast("Your letter link is ready!");
+    $("saveStatus").textContent = "Your letter is ready!";
 
   } catch (error) {
-    showToast("Couldn't copy automatically. Check browser permissions.");
+    console.error(error);
+    showToast("Something went wrong while creating your link.");
   }
 }
 
